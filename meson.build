@@ -34,6 +34,13 @@ foreach arg : global_args_maybe
 endforeach
 add_project_arguments(global_args, language: 'cpp')
 
+wayland_server_req = '>= 1.18.0'
+wlroots_req = ['>= 0.15', '< 0.16']
+
+cairo_dep = dependency('cairo')
+wayland_server_dep = dependency('wayland-server', version: wayland_server_req)
+wlroots_dep = dependency('wlroots', version: wlroots_req)
+
 public_inc = include_directories('include')
 
 pkgconfig = import('pkgconfig')

@@ -1,11 +1,21 @@
 _source = [
-    'zigzag.c'
+    'cairo_util.c',
+    'log.c',
+    'node.c',
+    'layout.c',
+]
+
+_zigzag_deps = [
+    cairo_dep,
+    wayland_server_dep,
+    wlroots_dep,
 ]
 
 _zigzag_lib = library(
     'zigzag',
     _source,
     install: true,
+    dependencies: _zigzag_deps,
     include_directories: public_inc,
 )
 
