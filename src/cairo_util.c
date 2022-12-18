@@ -4,6 +4,7 @@
 
 #include "common.h"
 
+ZIGZAG_EXPORT
 struct wlr_texture *
 zigzag_wlr_texture_from_cairo_surface(
     cairo_surface_t *surface, struct wlr_renderer *renderer)
@@ -16,6 +17,7 @@ zigzag_wlr_texture_from_cairo_surface(
       renderer, DRM_FORMAT_ARGB8888, stride, width, height, data);
 }
 
+ZIGZAG_EXPORT
 void
 zigzag_cairo_draw_centered_text(
     cairo_t *cr, char *text, double width, double height)
@@ -27,6 +29,7 @@ zigzag_cairo_draw_centered_text(
   cairo_show_text(cr, text);
 }
 
+ZIGZAG_EXPORT
 void
 zigzag_cairo_draw_left_aligned_text(
     cairo_t *cr, char *text, double width, double height, double padding)
@@ -39,6 +42,7 @@ zigzag_cairo_draw_left_aligned_text(
   cairo_show_text(cr, text);
 }
 
+ZIGZAG_EXPORT
 void
 zigzag_cairo_draw_right_aligned_text(
     cairo_t *cr, char *text, double width, double height, double padding)
@@ -48,4 +52,20 @@ zigzag_cairo_draw_right_aligned_text(
   cairo_move_to(cr, width - (extents.width + extents.x_bearing + padding),
       height / 2 - (extents.height / 2 + extents.y_bearing));
   cairo_show_text(cr, text);
+}
+
+ZIGZAG_EXPORT
+void
+zigzag_cairo_draw_rounded_rectangle(
+    cairo_t *cr, double width, double height, double radius)
+{
+  cairo_move_to(cr, radius, 0.);
+  cairo_line_to(cr, width - radius, 0.);
+  cairo_arc(cr, width - radius, radius, radius, -M_PI / 2, 0.);
+  cairo_line_to(cr, width, height - radius);
+  cairo_arc(cr, width - radius, height - radius, radius, 0., M_PI / 2);
+  cairo_line_to(cr, radius, height);
+  cairo_arc(cr, radius, height - radius, radius, M_PI / 2, M_PI);
+  cairo_line_to(cr, 0., radius);
+  cairo_arc(cr, radius, radius, radius, M_PI, 3 * M_PI / 2);
 }

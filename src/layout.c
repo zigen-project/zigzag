@@ -25,6 +25,7 @@ zigzag_layout_create(int output_width, int output_height, void *state,
 
   wl_list_init(&self->nodes);
 
+  return self;
 err:
   return NULL;
 }

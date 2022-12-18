@@ -52,6 +52,10 @@ struct zigzag_node *zigzag_node_create(struct zigzag_layout *layout,
     zigzag_node_set_frame_t set_frame, zigzag_node_on_click_t on_click,
     zigzag_node_render_t render);
 
+void zigzag_node_destroy(struct zigzag_node *self);
+
+void zigzag_node_cleanup_list(struct wl_list *nodes);
+
 struct wlr_texture *zigzag_node_render_texture(
     struct zigzag_node *self, struct wlr_renderer *renderer);
 
@@ -69,3 +73,6 @@ void zigzag_cairo_draw_left_aligned_text(
 
 void zigzag_cairo_draw_right_aligned_text(
     cairo_t *cr, char *text, double width, double height, double padding);
+
+void zigzag_cairo_draw_rounded_rectangle(
+    cairo_t *cr, double width, double height, double radius);
