@@ -1,1 +1,12 @@
 = ZIGZAG
+UI widets drawing library for https://github.com/zigen-project[ZIGEN] windowing system
+
+=== Build & Install
+
+[source, shell]
+----
+$ git clone https://github.com/zigen-project/zigzag.git
+$ cd zigzag
+$ meson build
+$ ninja -C build install
+----
